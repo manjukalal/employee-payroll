@@ -1,11 +1,11 @@
 package com.brigelabz;
 
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class EmployeePayrollService {
+
     private List<EmployeePayrollData> employeePayrollList;
 
     public EmployeePayrollService(List<EmployeePayrollData> employeePayrollList) {
@@ -21,7 +21,7 @@ public class EmployeePayrollService {
         EmployeePayrollService employeePayrollService = new EmployeePayrollService(employeePayrollList);
         Scanner scanner = new Scanner(System.in);
         employeePayrollService.readEmployeePayRollData(scanner);
-        employeePayrollService.writeEmployeePayrollData();
+        employeePayrollService.writeEmployeePayrollDara(IOService.CONSOLE_IO);
     }
 
     public void readEmployeePayRollData(Scanner scanner) {
@@ -29,17 +29,27 @@ public class EmployeePayrollService {
         int id = scanner.nextInt();
         System.out.println("Enter employee name");
         String name = scanner.next();
-        System.out.println(" Enter Employee salary");
+        System.out.println("Employee salary");
         double salary = scanner.nextDouble();
         employeePayrollList.add(new EmployeePayrollData(id, name, salary));
 
     }
 
-    public void writeEmployeePayrollData() {
-        System.out.println("\n writing Employee Payroll Roaster to console \n" + employeePayrollList);
+    public void writeEmployeePayrollDara(IOService ioService) {
+        if (ioService.equals(IOService.CONSOLE_IO))
+            System.out.println("\n writing Employee Payroll Roaster to console \n" + employeePayrollList);
+        else if (ioService.equals(IOService.FILE_IO))
+            new EmployeePayrollFileIOService().writeData(employeePayrollList);
     }
+
+
+    public long countEntries(IOService ioService) {
+        if (ioService.equals(IOService.FILE_IO))
+            return new EmployeePayrollFileIOService().countEntries();
+        return 0;
+    }
+
+    public enum IOService {CONSOLE_IO, FILE_IO, DB_IO, REST_ID}
+
+    ;
 }
-
-
-
-
