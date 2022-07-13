@@ -6,52 +6,40 @@ import java.util.List;
 import java.util.Scanner;
 
 public class EmployeePayrollService {
-
     private List<EmployeePayrollData> employeePayrollList;
 
-    public EmployeePayrollService() {
-
-    }
-
     public EmployeePayrollService(List<EmployeePayrollData> employeePayrollList) {
-
         this.employeePayrollList = employeePayrollList;
     }
 
+    public EmployeePayrollService() {
+    }
+
     public static void main(String[] args) {
-
-        Scanner SC = new Scanner(System.in);
-
-        ArrayList<EmployeePayrollData> employeePayrollList = new ArrayList<EmployeePayrollData>();
-
+        System.out.println("Welcome To Employee Payroll Problem");
+        ArrayList<EmployeePayrollData> employeePayrollList = new ArrayList<>();
         EmployeePayrollService employeePayrollService = new EmployeePayrollService(employeePayrollList);
-
-        employeePayrollService.readEmployeeData(SC);
-
-        employeePayrollService.write();
-
+        Scanner scanner = new Scanner(System.in);
+        employeePayrollService.readEmployeePayRollData(scanner);
+        employeePayrollService.writeEmployeePayrollData();
     }
 
-    private void write() {
-
-        System.out.println("Given Employee Data is : " + employeePayrollList);
-    }
-
-    private void readEmployeeData(Scanner scanner) {
-
-        System.out.println("Enter your name : ");
-        String name = scanner.nextLine();
-
-        System.out.println("Enter your ID : ");
+    public void readEmployeePayRollData(Scanner scanner) {
+        System.out.println("Enter employee id");
         int id = scanner.nextInt();
-
-        System.out.println("Enter your salary : ");
+        System.out.println("Enter employee name");
+        String name = scanner.next();
+        System.out.println(" Enter Employee salary");
         double salary = scanner.nextDouble();
+        employeePayrollList.add(new EmployeePayrollData(id, name, salary));
 
-        EmployeePayrollData empData = new EmployeePayrollData(id, salary, name);
+    }
 
-        employeePayrollList.add(empData);
+    public void writeEmployeePayrollData() {
+        System.out.println("\n writing Employee Payroll Roaster to console \n" + employeePayrollList);
     }
 }
+
+
 
 
