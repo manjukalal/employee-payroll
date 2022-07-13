@@ -11,7 +11,7 @@ public class EmployeePayrollServiceTest {
     @Test
     public void given3EmployeeWhenWrittenToFileShouldMatchEmployeeEntries() {
         EmployeePayrollData[] arrayOfEmp = {new EmployeePayrollData(1, "manju", 1000), new EmployeePayrollData(2, "kalal", 2000), new EmployeePayrollData(3, "vysh", 3000)};
-        EmployeePayrollService employeePayRollService;          //uc3 save the details in a file --open terminal enter->> more payroll-file.txt
+        EmployeePayrollService employeePayRollService;
         employeePayRollService = new EmployeePayrollService(Arrays.asList(arrayOfEmp));
         employeePayRollService.writeEmployeePayrollDara(EmployeePayrollService.IOService.FILE_IO);
         long entries = employeePayRollService.countEntries(EmployeePayrollService.IOService.FILE_IO);

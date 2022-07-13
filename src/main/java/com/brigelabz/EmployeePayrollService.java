@@ -1,5 +1,4 @@
 package com.brigelabz;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -49,7 +48,11 @@ public class EmployeePayrollService {
         return 0;
     }
 
+    public void printData(IOService ioService) {
+        if (ioService.equals(IOService.FILE_IO))
+            new EmployeePayrollFileIOService().printData();
+    }
+
     public enum IOService {CONSOLE_IO, FILE_IO, DB_IO, REST_ID}
 
-    ;
 }
